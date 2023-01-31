@@ -26,24 +26,39 @@ void FillArray(int[,] matr)
 void SumOfRow(int [,] matr)
 {
     int sum = 0;
-    int maxSum =0;
-    int i =0;
+    int i = 0;
+    int minIndex =0;
+    int maxIndex=0;
+    int min = 0;
+    int max = 0;
+    int [] mas = new int[matr.GetLength(0)];
     for (int rows = 0; rows < matr.GetLength(0); rows++)
     {
         for (int columns = 0; columns < matr.GetLength(1); columns++)
         {
             sum = sum  + matr[rows,columns];
         }
-    maxSum[i] = sum;
+    mas[i] = sum;
+    sum = 0;
     i++;
     }
-    if (maxSum[i]>maxSum[i+1])
+    for (int j = 0; j<mas.Length; j++)
     {
-        Console.WriteLine($"Максимальная сумма у строки номер {i+1}");
+        if (max < mas[j])
+        {
+            max = mas[j];
+            maxIndex = j;
+        }
+        else
+        {
+            min = mas[j];
+            minIndex = j;
+        }
     }
+    Console.WriteLine($"Строка номер {minIndex+1} содержит наименьшую сумму");
 }
 
-int[,] arr = new int [3,4];
+int[,] arr = new int [2,3];
 
 FillArray(arr);
 PrintArray(arr);
