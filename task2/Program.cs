@@ -23,43 +23,31 @@ void FillArray(int[,] matr)
     }
 }
 
-void SumOfRow(int [,] matr)
+void MinRow(int[,] matr)
 {
-    int sum = 0;
-    int i = 0;
-    int minIndex =0;
-    int maxIndex=0;
-    int min = 0;
-    int max = 0;
-    int [] mas = new int[matr.GetLength(0)];
-    for (int rows = 0; rows < matr.GetLength(0); rows++)
+    int minRow = 0;
+    int minSumRow = 0;
+    int sumRow = 0;
+    for (int i = 0; i < matr.GetLength(1); i++)
     {
-        for (int columns = 0; columns < matr.GetLength(1); columns++)
-        {
-            sum = sum  + matr[rows,columns];
-        }
-    mas[i] = sum;
-    sum = 0;
-    i++;
+        minRow += matr[0, i];
     }
-    for (int j = 0; j<mas.Length; j++)
+    for (int i = 0; i < matr.GetLength(0); i++)
     {
-        if (max < mas[j])
+        for (int j = 0; j < matr.GetLength(1); j++) sumRow += matr[i, j];
+        if (sumRow < minRow)
         {
-            max = mas[j];
-            maxIndex = j;
+            minRow = sumRow;
+            minSumRow = i;
         }
-        else
-        {
-            min = mas[j];
-            minIndex = j;
-        }
+        sumRow = 0;
     }
-    Console.WriteLine($"Строка номер {minIndex+1} содержит наименьшую сумму");
+    Console.Write($"{minSumRow + 1} строка");
 }
 
-int[,] arr = new int [2,3];
+int[,] arr = new int [3,4];
 
 FillArray(arr);
 PrintArray(arr);
-SumOfRow(arr); 
+MinRow(arr); 
+
